@@ -6,7 +6,7 @@ Budget action camera built on a **Radxa Zero 3W** (RK3566) with an SD card and a
 - `image/` – which OS image is used and why.
 - `rootfs/` – files placed on the board, mirroring its filesystem. `*.example*` files are templates; real values live in `secrets.env`.
 - `scripts/flash-sd.sh` – flashes the image to the SD card and injects first-boot config (run as root).
-- `docs/` – notes.
+- `docs/` – notes. `docs/board-setup.md` is the setup log and camera troubleshooting.
 
 ## Setup
 1. `cp secrets.env.example secrets.env` and fill it in. Generate a key: `ssh-keygen -t ed25519 -f ~/.ssh/action_cam`.
