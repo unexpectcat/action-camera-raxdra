@@ -1,0 +1,14 @@
+# Installed as /etc/netplan/20-wifi.yaml (mode 600). Values come from secrets.env.
+network:
+  version: 2
+  renderer: networkd
+  wifis:
+    wlan0:
+      dhcp4: true
+      optional: true
+      regulatory-domain: UA
+      access-points:
+        "@WIFI1_SSID@":
+          password: "@WIFI1_PASSWORD@"
+        "@WIFI2_SSID@":
+          password: "@WIFI2_PASSWORD@"
