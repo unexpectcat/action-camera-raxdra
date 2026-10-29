@@ -6,6 +6,8 @@ Budget action camera built on a **Radxa Zero 3W** (RK3566) with an SD card and a
 - `image/` – which OS image is used and why.
 - `rootfs/` – files placed on the board, mirroring its filesystem. `*.example*` files are templates; real values live in `secrets.env`.
 - `scripts/flash-sd.sh` – flashes the image to the SD card and injects first-boot config (run as root).
+- `server/` – `camd.py`, the camera daemon the app talks to (HTTP 8080, UDP discovery 41234), and its systemd unit. Install with `scripts/deploy-server.sh`.
+- `app/` – the Android app (see `app/README.md`).
 - `docs/` – notes. `docs/board-setup.md` is the setup log and camera troubleshooting.
 
 ## Setup

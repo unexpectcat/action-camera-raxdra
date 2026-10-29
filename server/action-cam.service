@@ -1,0 +1,13 @@
+[Unit]
+Description=Action camera daemon (HTTP API + discovery for the phone app)
+After=network.target
+
+[Service]
+User=radxa
+Group=video
+ExecStart=/usr/bin/python3 /opt/action-cam/camd.py
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
