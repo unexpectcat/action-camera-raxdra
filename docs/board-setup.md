@@ -45,3 +45,17 @@ Supported alternatives on this board: Raspberry Pi Camera v2 (IMX219) with
 `radxa-zero3-rpi-camera-v2`, Radxa Camera 8M.
 
 Packages added: `v4l-utils`, `i2c-tools`, `device-tree-compiler`, `gpiod`.
+
+## Plan B: USB webcam (while waiting for a new CSI camera)
+A disassembled USB webcam board has four pads: **V** = +5 V, **G** = GND, **P** = D+, **M** = D−.
+It is still a USB device, so it cannot go on GPIO pins. Wiring:
+- Solder a cut USB-A cable to the pads (red→V, black→G, green→P, white→M). Keep the data wires
+  short (<15 cm) and twisted.
+- USB-A female → USB-C **OTG** adapter → the Zero 3W's USB 3.0 Type-C port (not the power one).
+  An OTG adapter makes the port supply 5 V; a plain USB-C cable end may not.
+- Not detected? Swap P and M first. Check V/G twice before plugging in.
+
+Next steps when it is plugged in: `lsusb`, `v4l2-ctl --list-devices --list-formats-ext`,
+run `scripts/deploy-server.sh`, add a `webcam` source to `server/camd.py`
+(photo = one frame, recording = MJPEG stream copy via `ffmpeg -f v4l2 -input_format mjpeg`, little CPU),
+set `"source": "webcam"` in `/etc/action-cam/camd.json`.
